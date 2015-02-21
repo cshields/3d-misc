@@ -13,11 +13,16 @@ $fn=50;
 
 module element_gutter() {
 	union() {
-		translate([mast/2+element/2,0,0])
+		translate([mast/2+element/2,0,width/2+extension/2+1])
+			cylinder(d=element,h=width+extension,center=true);
+		translate([mast/2+element/2,0,-(width/2+extension/2+6)])
 			cylinder(d=element,h=width+extension*2+1,center=true);
 		rotate(90,[0,1,0])
-			translate([0,0,mast/2])
-			cube([18,8,mast],center=true);
+			translate([4,0,mast/2])
+			cube([6,10,mast],center=true);
+		rotate(90,[0,1,0])
+			translate ([-4,0,mast/2])
+			cube([6,10,mast],center=true);
 	}
 }
 
@@ -29,7 +34,7 @@ module holder() {
 	difference() {
 		union() {
 			minkowski() {
-				cube([34,34,20], center=true);
+				cube([width-4,width-4,22], center=true);
 				cylinder(r=2,h=1);
 			}
 			translate([mast/2+element/2,0,-3])
